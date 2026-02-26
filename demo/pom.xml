@@ -72,17 +72,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<resources>
-			<!-- 1. 保留默认的资源目录，这是必须的 -->
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<!-- 2. 添加你的自定义配置目录 -->
-			<resource>
-				<directory>src/config</directory>
-				<targetPath>${project.build.outputDirectory}</targetPath>
-			</resource>
-	</resources>
 	</build>
 
 </project>
