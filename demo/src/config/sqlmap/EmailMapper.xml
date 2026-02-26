@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bocom.epcc.dao.EmailRepository">
+
+    <resultMap id="emailResultMap" type="com.bocom.epcc.entity.Email">
+        <id property="email" column="EEC_EMAIL"/>
+        <result property="username" column="EEC_USERNAME"/>
+        <result property="description" column="EEC_DESC"/>
+        <result property="createTime" column="EEC_CREATETIME"/>
+        <result property="modTeller" column="EEC_MODTELLER"/>
+        <result property="lastModTime" column="EEC_LASTMODTIME"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="emailResultMap">
+        SELECT * FROM EPCC_EMAIL_CTRL
+    </select>
+
+    <select id="findByEmail" resultMap="emailResultMap">
+        SELECT * FROM EPCC_EMAIL_CTRL WHERE EEC_EMAIL = #{email}
+    </select>
+
+    <select id="countByEmail" resultType="int">
+        SELECT COUNT(*) FROM EPCC_EMAIL_CTRL WHERE EEC_EMAIL = #{email}
+    </select>
+
+    <insert id="insert" parameterType="com.bocom.epcc.entity.Email">
+        INSERT INTO EPCC_EMAIL_CTRL (
+            EEC_EMAIL, 
+            EEC_USERNAME, 
+            EEC_DESC, 
+            EEC_CREATETIME, 
+            EEC_MODTELLER, 
+            EEC_LASTMODTIME
+        ) VALUES (
+            #{email}, 
+            #{username}, 
+            #{description}, 
+            #{createTime}, 
+            #{modTeller}, 
+            #{lastModTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.bocom.epcc.entity.Email">
+        UPDATE EPCC_EMAIL_CTRL 
+        SET 
+            EEC_USERNAME = #{username}, 
+            EEC_DESC = #{description}, 
+            EEC_MODTELLER = #{modTeller}, 
+            EEC_LASTMODTIME = #{lastModTime}
+        WHERE 
+            EEC_EMAIL = #{email}
+    </update>
+
+    <delete id="deleteByEmail">
+        DELETE FROM EPCC_EMAIL_CTRL WHERE EEC_EMAIL = #{email}
+    </delete>
+
+</mapper>
