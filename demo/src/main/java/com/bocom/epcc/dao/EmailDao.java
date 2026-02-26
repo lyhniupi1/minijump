@@ -16,37 +16,37 @@ public class EmailDao {
     
     public List<Email> findAll() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectList("com.bocom.epcc.dao.EmailRepository.findAll");
+            return session.selectList("emailhandle.findAll");
         }
     }
     
     public Email findByEmail(String email) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne("com.bocom.epcc.dao.EmailRepository.findByEmail", email);
+            return session.selectOne("emailhandle.findByEmail", email);
         }
     }
     
     public int insert(Email email) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.insert("com.bocom.epcc.dao.EmailRepository.insert", email);
+            return session.insert("emailhandle.insert", email);
         }
     }
     
     public int update(Email email) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.update("com.bocom.epcc.dao.EmailRepository.update", email);
+            return session.update("emailhandle.update", email);
         }
     }
     
     public int deleteByEmail(String email) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.delete("com.bocom.epcc.dao.EmailRepository.deleteByEmail", email);
+            return session.delete("emailhandle.deleteByEmail", email);
         }
     }
     
     public int countByEmail(String email) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne("com.bocom.epcc.dao.EmailRepository.countByEmail", email);
+            return session.selectOne("emailhandle.countByEmail", email);
         }
     }
 }
