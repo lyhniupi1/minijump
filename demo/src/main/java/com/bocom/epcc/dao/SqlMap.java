@@ -13,25 +13,25 @@ public class SqlMap {
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
     
-    public <T> List<T> selectList(String statement) {
+    public <T> List<T> queryForList(String statement) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList(statement);
         }
     }
     
-    public <T> List<T> selectList(String statement, Object parameter) {
+    public <T> List<T> queryForList(String statement, Object parameter) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList(statement, parameter);
         }
     }
     
-    public <T> T selectOne(String statement) {
+    public <T> T queryForObject(String statement) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectOne(statement);
         }
     }
     
-    public <T> T selectOne(String statement, Object parameter) {
+    public <T> T queryForObject(String statement, Object parameter) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectOne(statement, parameter);
         }

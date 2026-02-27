@@ -13,11 +13,11 @@ public class EmailDao {
     private SqlMap sqlMap;
     
     public List<Email> findAll() {
-        return sqlMap.selectList("emailhandle.findAll");
+        return sqlMap.queryForList("emailhandle.findAll");
     }
     
     public Email findByEmail(String email) {
-        return sqlMap.selectOne("emailhandle.findByEmail", email);
+        return sqlMap.queryForObject("emailhandle.findByEmail", email);
     }
     
     public int insert(Email email) {
@@ -33,6 +33,6 @@ public class EmailDao {
     }
     
     public int countByEmail(String email) {
-        return sqlMap.selectOne("emailhandle.countByEmail", email);
+        return sqlMap.queryForObject("emailhandle.countByEmail", email);
     }
 }
