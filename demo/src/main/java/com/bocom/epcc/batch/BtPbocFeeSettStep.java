@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Component
@@ -28,8 +29,10 @@ public class BtPbocFeeSettStep extends AbstractBatchStep{
                 System.out.println("查询到 " + feeList.size() + " 条费用汇总记录");
                 
                 BigDecimal totalSum = BigDecimal.ZERO;
+                BigDecimal feeRounded = BigDecimal.ZERO;
                 for (BigDecimal fee : feeList) {
-                    totalSum = totalSum.add(fee);
+                    feeRounded = fee.setScale(2, RoundingMode.HALF_EVEN);
+                    totalSum = totalSum.add(feeRounded);
                 }
                 
                 System.out.println("总费用汇总: " + totalSum);
