@@ -6,7 +6,7 @@
     操作柜员号  EEC_MODTELLER
     最后更新时间    EEC_LASTMODTIME
 
-2、demo\src\config\sqlmap 目录下放mybatis的xml文件，其中包含sql语句
+2、demo\src\main\java\config\sqlmap 目录下放mybatis的xml文件，其中包含sql语句
     对EPCC_EMAIL_CTRL表进行增删改查
 
 3、demo\src\main\java\com\bocom\epcc\dao 目录下放dao类，用于持有mybatis的sqlmap，进行增删改查

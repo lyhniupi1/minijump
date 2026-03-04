@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="epccBatchStat">
+
+    <!-- 返回简单数值列表的查询 -->
+    <select id="sumFeeByGroup" parameterType="java.util.HashMap" resultType="java.math.BigDecimal">
+        SELECT
+            SUM(COALESCE(EBS_NETSERVERFEE, 0) + COALESCE(EBS_EXCHANGEFEE, 0)) as total_fee
+        FROM
+            epcc_batch_stat
+        WHERE
+            EBS_TRANSTT IN ('00', '03')
+            AND EBS_BTID BETWEEN #{startBtId} AND #{endBtId}
+        GROUP BY
+            EBS_TRANDATE, EBS_INSTSSRID
+        ORDER BY
+            EBS_TRANDATE, EBS_INSTSSRID
+    </select>
+
+    <!-- 返回包含分组信息的查询 -->
+    <select id="sumFeeByGroupWithInfo" parameterType="java.util.HashMap" resultType="com.bocom.epcc.dao.EpccBatchStatDao$FeeSumResult">
+        SELECT
+            EBS_TRANDATE as transDate,
+            EBS_INSTSSRID as instSsrId,
+            SUM(COALESCE(EBS_NETSERVERFEE, 0) + COALESCE(EBS_EXCHANGEFEE, 0)) as totalFee
+        FROM
+            epcc_batch_stat
+        WHERE
+            EBS_TRANSTT IN ('00', '03')
+            AND EBS_BTID BETWEEN #{startBtId} AND #{endBtId}
+        GROUP BY
+            EBS_TRANDATE, EBS_INSTSSRID
+        ORDER BY
+            EBS_TRANDATE, EBS_INSTSSRID
+    </select>
+
+</mapper>
